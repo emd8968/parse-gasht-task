@@ -1,0 +1,23 @@
+# Docker-Compose Version
+version: '3.9'
+name: 'parse-gasht-api-platform'
+services:
+    parse-gasht-api:
+        build:
+            context: ./
+            dockerfile: docker/local.Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www
+        tty: true
+        volumes:
+            - ./:/var/www
+        ports:
+            - "80:80"
+        networks:
+            - my-network
+volumes:
+    mysql-data:
+# Networks
+networks:
+    my-network:
+        driver: bridge
