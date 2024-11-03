@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id');
-            $table->unsignedBigInteger('currency_id');
+            $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');
+            $table->unsignedBigInteger('currency_id')->nullable();
             $table->foreign('currency_id')->on('currencies')->references('id');
-            $table->unsignedBigInteger('country_id');
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')->on('countries')->references('id');
             $table->timestamps();
         });
